@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:baseball/constants/messages.dart';
+import 'package:baseball/utils/gen_random_number.dart';
+import 'package:baseball/utils/gen_unique_random_numbers.dart';
 
 void main() {
   print(MessageConstants.welcome);
+  print(MessageConstants.inputNumbers);
 
-  print('3자리 숫자를 입력해주세요.');
   String numbers = stdin.readLineSync();
-
-  print('$numbers');
+  print(generateUniqueRandomNumbers());
 }
