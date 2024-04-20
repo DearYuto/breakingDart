@@ -1,4 +1,7 @@
 name: baseball
 
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
 dev_dependencies:
   test: ^1.24.3
