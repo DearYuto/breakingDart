@@ -1,3 +1,5 @@
+import '../constants/game_rules.dart';
+
 class InputValidator {
   InputValidator._();
 
@@ -6,7 +8,7 @@ class InputValidator {
         numbers.split('').map((number) => int.parse(number)).toList();
 
     return splittedNumbers.every((number) {
-      return number >= 1 && number <= 9;
+      return number >= GameRules.MIN_NUM && number <= GameRules.MAX_NUM;
     });
   }
 }

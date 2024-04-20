@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:baseball/utils/gen_random_number.dart';
 
 String generateUniqueRandomNumbers({int count = 3, int min = 1, int max = 9}) {
