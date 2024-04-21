@@ -12,4 +12,9 @@ class InputValidator {
 
     return inputSet.length == inputs.length;
   }
+
+  static bool validLength<T>(List<T> inputs,
+      {int length = GameRules.answerLength}) {
+    return inputs.length == length;
+  }
 }
