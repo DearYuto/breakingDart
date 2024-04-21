@@ -7,5 +7,6 @@ void main() {
     inputView: InputView(),
     outputView: OutputView(),
   );
+
   gameManager.initGame();
 }

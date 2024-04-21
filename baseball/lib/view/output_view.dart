@@ -8,4 +8,8 @@ class OutputView {
   void printInputNumbers() {
     print(MessageConstants.inputNumbers);
   }
+
+  void printMessage(String message) {
+    print(message);
+  }
 }
