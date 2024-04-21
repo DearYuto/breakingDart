@@ -2,9 +2,9 @@ import 'package:baseball/constants/game_rules.dart';
 import 'package:baseball/utils/gen_random_number.dart';
 
 String generateUniqueRandomNumbers(
-    {int count = GameRules.MATCH_COUNT,
-    int min = GameRules.MIN_NUM,
-    int max = GameRules.MAX_NUM}) {
+    {int count = GameRules.matchCount,
+    int min = GameRules.minNum,
+    int max = GameRules.maxNum}) {
   Set<int> uniqueNumbers = {};
 
   while (uniqueNumbers.length < count) {

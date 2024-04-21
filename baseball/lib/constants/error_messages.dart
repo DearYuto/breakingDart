@@ -7,5 +7,5 @@ class ErrorMessageConstants {
       '반환 타입이 문자열 리스트가 아닌 경우 converter 콜백 함수를 넣어주세요.';
 
   static const String invalidRange =
-      '${GameRules.MIN_NUM} ~ ${GameRules.MAX_NUM} 사이의 숫자만 입력할 수 있어요.';
+      '${GameRules.minNum} ~ ${GameRules.maxNum} 사이의 숫자만 입력할 수 있어요.';
 }

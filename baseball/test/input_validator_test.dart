@@ -6,18 +6,17 @@ import 'package:test/scaffolding.dart';
 void main() {
   group('inputValidator 클래스를 테스트할게요. 🐈', () {
     final bool Function(int) callback =
-        (int num) => num >= GameRules.MIN_NUM && num <= GameRules.MAX_NUM;
+        (int num) => num >= GameRules.minNum && num <= GameRules.maxNum;
 
     test(
-        '입력 받은 값이 ${GameRules.MIN_NUM} ~ ${GameRules.MAX_NUM} 사이의 숫자로 이루어져 있으면 true를 반환해요.',
+        '입력 받은 값이 ${GameRules.minNum} ~ ${GameRules.maxNum} 사이의 숫자로 이루어져 있으면 true를 반환해요.',
         () {
       const List<int> inputs = [1, 2, 3];
 
       expect(InputValidator.validRange(inputs, callback), isTrue);
     });
 
-    test(
-        '입력 값이 ${GameRules.MIN_NUM} ~ ${GameRules.MAX_NUM} 사이가 아니면 false를 반환해요.',
+    test('입력 값이 ${GameRules.minNum} ~ ${GameRules.maxNum} 사이가 아니면 false를 반환해요.',
         () {
       const List<int> inputs = [0, 0, 0];
 
