@@ -8,19 +8,37 @@ void main() {
     final bool Function(int) callback =
         (int num) => num >= GameRules.minNum && num <= GameRules.maxNum;
 
-    test(
-        '입력 받은 값이 ${GameRules.minNum} ~ ${GameRules.maxNum} 사이의 숫자로 이루어져 있으면 true를 반환해요.',
-        () {
-      const List<int> inputs = [1, 2, 3];
+    final testCases = [
+      {
+        'input': [1, 2, 3],
+        'expected': true
+      },
+      {
+        'input': [0, 0, 0],
+        'expected': false,
+      },
+      {
+        'input': [5, 1, 8],
+        'expected': true,
+      },
+      {
+        'input': [4, 10, 400],
+        'expected': false,
+      },
+      {
+        'input': [4, 5, -4],
+        'expected': false,
+      },
+    ];
 
-      expect(InputValidator.validRange(inputs, callback), isTrue);
-    });
-
-    test('입력 값이 ${GameRules.minNum} ~ ${GameRules.maxNum} 사이가 아니면 false를 반환해요.',
-        () {
-      const List<int> inputs = [0, 0, 0];
-
-      expect(InputValidator.validRange(inputs, callback), isFalse);
-    });
+    for (var testCase in testCases) {
+      test(
+          '입력 받은 값: ${testCase['input']}, ${GameRules.minNum} ~ ${GameRules.maxNum} 사이의 숫자로 이루어져 있으면 ${testCase['expected']}를 반환해요.',
+          () {
+        expect(
+            InputValidator.validRange(testCase['input'] as List<int>, callback),
+            testCase['expected']);
+      });
+    }
   });
 }
