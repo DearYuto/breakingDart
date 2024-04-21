@@ -12,6 +12,6 @@ class StringUtils {
       throw ArgumentError(ErrorMessageConstants.invalidConvertType);
     }
 
-    return str.split('').map((char) => converter(char)).toList();
+    return str.split('').map(converter).toList();
   }
 }
