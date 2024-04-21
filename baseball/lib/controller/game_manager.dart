@@ -1,4 +1,5 @@
 import 'package:baseball/constants/game_rules.dart';
+import 'package:baseball/model/game_state.dart';
 import 'package:baseball/utils/string_utils.dart';
 import 'package:baseball/validator/input_validator.dart';
 
@@ -8,10 +9,13 @@ import '../view/output_view.dart';
 class GameManager {
   final InputView _inputView;
   final OutputView _outputView;
+  final GameState _gameState;
 
-  GameManager({required inputView, required outputView})
+  GameManager(
+      {required inputView, required outputView, required GameState gameState})
       : this._inputView = inputView,
-        this._outputView = outputView {
+        this._outputView = outputView,
+        this._gameState = gameState {
     _outputView.printWelcome();
   }
 
@@ -26,7 +30,6 @@ class GameManager {
     while (isPlaying) {
       try {
         String userInput = _inputView.readInput();
-
         final List<int> parsedNumbers =
             StringUtils.parseToList(userInput, converter: int.parse);
 
