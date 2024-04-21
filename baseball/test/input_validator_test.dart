@@ -9,6 +9,7 @@ void main() {
       final bool Function(int) callback =
           (int num) => num >= GameRules.minNum && num <= GameRules.maxNum;
 
+      //given
       const List<Map<String, dynamic>> testCases = [
         {
           'input': [1, 2, 3],
@@ -32,10 +33,12 @@ void main() {
         },
       ];
 
+      //when
       for (var testCase in testCases) {
         test(
             '입력 받은 값: ${testCase['input']}, ${GameRules.minNum} ~ ${GameRules.maxNum} 사이의 숫자로 이루어져 있으면 ${testCase['expected']}를 반환해요.',
             () {
+          //then
           expect(
               InputValidator.validRange(
                   testCase['input'] as List<int>, callback),
@@ -74,6 +77,36 @@ void main() {
             () {
           expect(InputValidator.isUniqueList(element['list']),
               element['list'].length == element['setList'].length);
+        });
+      });
+    });
+
+    group('✅ validLength 메서드 테스트', () {
+      const List<Map<String, dynamic>> testCases = [
+        {
+          'list': [1, 2, 3],
+          'expected': true,
+        },
+        {
+          'list': [1],
+          'expected': false,
+        },
+        {
+          'list': [],
+          'expected': false,
+        },
+        {
+          'list': [1, 2, 3, 4, 5, 6],
+          'expected': false,
+        },
+      ];
+
+      testCases.forEach((element) {
+        test(
+            '게임 룰로 정해진 길이: ${GameRules.answerLength}와 실제 인수로 들어온 List의 길이가 같은지 확인해요. 결과는: ${element['expected']}를 반환해요.',
+            () {
+          expect(
+              InputValidator.validLength(element['list']), element['expected']);
         });
       });
     });
