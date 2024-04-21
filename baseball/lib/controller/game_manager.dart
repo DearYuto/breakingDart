@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:baseball/constants/game_rules.dart';
 import 'package:baseball/utils/string_utils.dart';
 import 'package:baseball/validator/input_validator.dart';
@@ -28,22 +26,26 @@ class GameManager {
     while (isPlaying) {
       try {
         String userInput = _inputView.readInput();
+
         final List<int> parsedNumbers =
             StringUtils.parseToList(userInput, converter: int.parse);
 
-        isValidInput(parsedNumbers);
+        _validateInput(parsedNumbers);
 
-        print(parsedNumbers);
+        isPlaying = false;
       } catch (e) {
-        print(e);
+        _outputView.printMessage(e.toString());
       }
     }
   }
 
-  bool isValidInput(List<int> inputs) {
-    return InputValidator.validRange(inputs,
-        (int num) => num >= GameRules.minNum && num <= GameRules.maxNum);
+  void _validateInput(List<int> inputs) {
+    final bool Function(int) conditionCb =
+        (int num) => num >= GameRules.minNum && num <= GameRules.maxNum;
 
-    // if (!isValid) throw Exception(ErrorMessageConstants.invalidRange);
+    final Map<String, dynamic> validateInfo =
+        InputValidator.validateAll(inputs, conditionCb: conditionCb);
+
+    if (!validateInfo['valid']) throw Exception(validateInfo['reason']);
   }
 }

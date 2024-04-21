@@ -12,6 +12,10 @@ class StringUtils {
       throw ArgumentError(ErrorMessageConstants.invalidConvertType);
     }
 
+    // todo 아래 로직 이동 시켜야 함
+    int? number = int.tryParse(str);
+    if (number == null) throw ErrorMessageConstants.notANumber;
+
     return str.split('').map(converter).toList();
   }
 }
