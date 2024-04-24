@@ -29,7 +29,6 @@ class GameService {
 
   int calcBall(String userInput) {
     int ball = 0;
-
     int strike = calcStrike(userInput);
 
     for (int i = 0; i < userInput.length; i++) {
@@ -41,7 +40,7 @@ class GameService {
     return ball - strike;
   }
 
-  GameResult compareAnswer(String userInput) {
+  GameResult calcGameResult(String userInput) {
     int strike = calcStrike(userInput);
     int ball = calcBall(userInput);
     bool nothing = ball == 0 && strike == 0;
