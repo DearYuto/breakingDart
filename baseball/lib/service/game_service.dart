@@ -19,7 +19,7 @@ class GameService {
     int strike = 0;
 
     for (int i = 0; i < userNumbers.length; i++) {
-      if (this._gameState.correctAnswer[i] == userNumbers[i]) {
+      if (int.tryParse(this._gameState.correctAnswer[i]) == userNumbers[i]) {
         strike += 1;
       }
     }
@@ -44,6 +44,9 @@ class GameService {
     int strike = calcStrike(userInput);
     int ball = calcBall(userInput);
     bool nothing = ball == 0 && strike == 0;
+
+    // todo remove
+    print('결과 디버깅용 ${_gameState.correctAnswer}');
 
     return GameResult(strike: strike, ball: ball, nothing: nothing);
   }

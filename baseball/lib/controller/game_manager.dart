@@ -35,18 +35,27 @@ class GameManager {
       try {
         List<int> userNumbers = _getUserInput();
         _validateInput(userNumbers);
-        isPlaying = false;
 
-        matchNumbers(userNumbers);
+        bool isStop = isGameOver(userNumbers);
+        isPlaying = !isStop;
       } catch (e) {
         _outputView.printMessage(e.toString());
       }
     }
   }
 
-  matchNumbers(List<int> userNumbers) {
+  bool isGameOver(List<int> userNumbers) {
     GameResult result = _gameService.calcGameResult(userNumbers);
-    print('${result.ball} ${result.strike} ${result.nothing}');
+
+    if (result.strike == 3) {
+      _outputView.printGameOver();
+      return true;
+    }
+
+    _outputView.printCalcResult(
+        ball: result.ball, strike: result.strike, nothing: result.nothing);
+
+    return false;
   }
 
   List<int> _getUserInput() {
