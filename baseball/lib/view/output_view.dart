@@ -1,5 +1,5 @@
-import '../constants/messages.dart';
-import '../model/game_result.dart';
+import 'package:baseball/constants/messages.dart';
+import 'package:baseball/model/game_result.dart';
 
 class OutputView {
   void printWelcome() {
@@ -24,7 +24,7 @@ class OutputView {
 
   String _getResultTemplate(GameResult gameResult) {
     if (gameResult.ball == 0 && gameResult.strike == 0) {
-      return '${MessageConstants.nothing}';
+      return MessageConstants.nothing;
     }
 
     if (gameResult.ball <= 0) {

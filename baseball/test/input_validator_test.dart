@@ -75,6 +75,7 @@ void main() {
         test(
             'list: ${element['list']}, setList: ${element['setList']}, 중복 값을 제거했을 때 길이는 ${element['setList'].length}, 리턴 결과는 ${element['expected']}여야 해요.',
             () {
+          // todo.
           expect(InputValidator.isUniqueList(element['list']),
               element['list'].length == element['setList'].length);
         });
@@ -106,7 +107,9 @@ void main() {
             '게임 룰로 정해진 길이: ${GameRules.answerLength}와 실제 인수로 들어온 List의 길이가 같은지 확인해요. 결과는: ${element['expected']}를 반환해요.',
             () {
           expect(
-              InputValidator.validLength(element['list']), element['expected']);
+              // todo.
+              InputValidator.validLength(element['list']),
+              element['expected']);
         });
       });
     });
