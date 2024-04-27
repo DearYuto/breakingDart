@@ -39,6 +39,10 @@ class InputValidator {
     return ValidationResult(valid: true);
   }
 
+  static bool validReGameCommand(String input) {
+    return input == '1' || input == '2';
+  }
+
   static bool isNumbers<T>(List<T> inputs) {
     return inputs.every((input) => input is int);
   }

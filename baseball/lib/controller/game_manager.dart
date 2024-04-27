@@ -1,4 +1,5 @@
 import 'package:baseball/constants/game_rules.dart';
+import 'package:baseball/model/game_state.dart';
 import 'package:baseball/utils/string_utils.dart';
 import 'package:baseball/validator/input_validator.dart';
 import 'package:baseball/validator/validation_result.dart';
@@ -11,7 +12,7 @@ import '../view/output_view.dart';
 class GameManager {
   final InputView _inputView;
   final OutputView _outputView;
-  final GameService _gameService;
+  GameService _gameService;
 
   GameManager(
       {required inputView,
@@ -49,6 +50,20 @@ class GameManager {
 
     if (result.strike == 3) {
       _outputView.printGameOver();
+
+      bool stop = false;
+      while (!stop) {
+        try {
+          String reGameCommand = _inputView.readRegame();
+          stop = InputValidator.validReGameCommand(reGameCommand);
+
+          if (reGameCommand == '1') _resetGame();
+          if (reGameCommand == '2') _outputView.printMessage('게임 종료!');
+        } catch (e) {
+          throw e;
+        }
+      }
+
       return true;
     }
 
@@ -56,6 +71,11 @@ class GameManager {
         ball: result.ball, strike: result.strike, nothing: result.nothing);
 
     return false;
+  }
+
+  void _resetGame() {
+    this._gameService = GameService(GameState());
+    initGame();
   }
 
   List<int> _getUserInput() {
