@@ -23,6 +23,8 @@ class GameManager {
   void initGame() {
     _outputView.printInputNumbers();
     play();
+
+    print(_gameState.correctAnswer);
   }
 
   void play() {
@@ -30,17 +32,21 @@ class GameManager {
 
     while (isPlaying) {
       try {
-        String userInput = _inputView.readInput();
-        final List<int> parsedNumbers =
-            StringUtils.parseToList(userInput, converter: int.parse);
-
-        _validateInput(parsedNumbers);
-
+        List<int> userInput = _getUserInput();
+        _validateInput(userInput);
         isPlaying = false;
       } catch (e) {
         _outputView.printMessage(e.toString());
       }
     }
+  }
+
+  List<int> _getUserInput() {
+    String userInput = _inputView.readInput();
+    final List<int> parsedNumbers =
+        StringUtils.parseToList(userInput, converter: int.parse);
+
+    return parsedNumbers;
   }
 
   void _validateInput(List<int> inputs) {
