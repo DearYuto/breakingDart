@@ -69,7 +69,7 @@ class GameManager {
       return true;
     }
 
-    _outputView.printCalcResult(ball: result.ball, strike: result.strike);
+    _outputView.printCalcResult(result);
 
     return false;
   }

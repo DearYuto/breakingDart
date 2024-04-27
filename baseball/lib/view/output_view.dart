@@ -1,4 +1,5 @@
 import '../constants/messages.dart';
+import '../model/game_result.dart';
 
 class OutputView {
   void printWelcome() {
@@ -13,30 +14,27 @@ class OutputView {
     print(message);
   }
 
-  void printCalcResult({required int ball, required int strike}) {
-    printMessage(_getResultTemplate(ball: ball, strike: strike));
+  void printCalcResult(GameResult gameResult) {
+    printMessage(_getResultTemplate(gameResult));
   }
 
   void printGameOver() {
     printMessage(MessageConstants.gameover);
   }
 
-  String _getResultTemplate({
-    required int ball,
-    required int strike,
-  }) {
-    if (ball == 0 && strike == 0) {
+  String _getResultTemplate(GameResult gameResult) {
+    if (gameResult.ball == 0 && gameResult.strike == 0) {
       return '${MessageConstants.nothing}';
     }
 
-    if (ball <= 0) {
-      return '${strike}${MessageConstants.strike}';
+    if (gameResult.ball <= 0) {
+      return '${gameResult.strike}${MessageConstants.strike}';
     }
 
-    if (strike <= 0) {
-      return '${ball}${MessageConstants.ball}';
+    if (gameResult.strike <= 0) {
+      return '${gameResult.ball}${MessageConstants.ball}';
     }
 
-    return '${ball}${MessageConstants.ball} ${strike}${MessageConstants.strike}';
+    return '${gameResult.ball}${MessageConstants.ball} ${gameResult.strike}${MessageConstants.strike}';
   }
 }
