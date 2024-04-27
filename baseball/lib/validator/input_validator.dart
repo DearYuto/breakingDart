@@ -1,11 +1,12 @@
 import 'package:baseball/constants/game_rules.dart';
+import 'package:baseball/validator/validation_result.dart';
 
 import '../constants/error_messages.dart';
 
 class InputValidator {
   InputValidator._();
 
-  static Map<String, dynamic> validateAll<T>(List<T> inputs,
+  static ValidationResult validateAll<T>(List<T> inputs,
       {required bool Function(T) conditionCb,
       int length = GameRules.answerLength}) {
     try {
@@ -29,16 +30,13 @@ class InputValidator {
       if (!validLength(inputs, length: length))
         throw FormatException(ErrorMessageConstants.invalidLength);
     } catch (e) {
-      return {
-        'valid': false,
-        'reason': e is FormatException ? e.message : e.toString()
-      };
+      return ValidationResult(
+          valid: false,
+          reason: e is FormatException ? e.message : e.toString());
     }
 
     // 모든 검증 통과
-    return {
-      'valid': true,
-    };
+    return ValidationResult(valid: true);
   }
 
   static bool isNumbers<T>(List<T> inputs) {

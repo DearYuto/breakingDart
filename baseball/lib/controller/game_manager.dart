@@ -2,6 +2,7 @@ import 'package:baseball/constants/game_rules.dart';
 import 'package:baseball/model/game_state.dart';
 import 'package:baseball/utils/string_utils.dart';
 import 'package:baseball/validator/input_validator.dart';
+import 'package:baseball/validator/validation_result.dart';
 
 import '../view/input_view.dart';
 import '../view/output_view.dart';
@@ -46,9 +47,9 @@ class GameManager {
     final bool Function(int) conditionCb =
         (int num) => num >= GameRules.minNum && num <= GameRules.maxNum;
 
-    final Map<String, dynamic> validateInfo =
+    final ValidationResult validateInfo =
         InputValidator.validateAll(inputs, conditionCb: conditionCb);
 
-    if (!validateInfo['valid']) throw Exception(validateInfo['reason']);
+    if (!validateInfo.valid) throw Exception(validateInfo.reason);
   }
 }
