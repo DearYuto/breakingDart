@@ -15,11 +15,11 @@ class GameService {
     return false;
   }
 
-  int calcStrike(String userInput) {
+  int calcStrike(List<int> userNumbers) {
     int strike = 0;
 
-    for (int i = 0; i < userInput.length; i++) {
-      if (this._gameState.correctAnswer[i] == userInput[i]) {
+    for (int i = 0; i < userNumbers.length; i++) {
+      if (this._gameState.correctAnswer[i] == userNumbers[i]) {
         strike += 1;
       }
     }
@@ -27,12 +27,12 @@ class GameService {
     return strike;
   }
 
-  int calcBall(String userInput) {
+  int calcBall(List<int> userNumbers) {
     int ball = 0;
-    int strike = calcStrike(userInput);
+    int strike = calcStrike(userNumbers);
 
-    for (int i = 0; i < userInput.length; i++) {
-      if (this._gameState.correctAnswer.contains(userInput[i])) {
+    for (int i = 0; i < userNumbers.length; i++) {
+      if (this._gameState.correctAnswer.contains(userNumbers[i].toString())) {
         ball += 1;
       }
     }
@@ -40,7 +40,7 @@ class GameService {
     return ball - strike;
   }
 
-  GameResult calcGameResult(String userInput) {
+  GameResult calcGameResult(List<int> userInput) {
     int strike = calcStrike(userInput);
     int ball = calcBall(userInput);
     bool nothing = ball == 0 && strike == 0;
