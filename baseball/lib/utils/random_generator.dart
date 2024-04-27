@@ -11,10 +11,10 @@ class RandomGenerator {
       {int count = GameRules.matchCount,
       int min = GameRules.minNum,
       int max = GameRules.maxNum}) {
-    Set<int> uniqueNumbers = {};
+    final Set<int> uniqueNumbers = {};
 
     while (uniqueNumbers.length < count) {
-      int randomNumber = generateRandomNumber(min, max);
+      final int randomNumber = generateRandomNumber(min, max);
       uniqueNumbers.add(randomNumber);
     }
 

@@ -10,11 +10,11 @@ import 'package:baseball/view/input_view.dart';
 import 'package:baseball/view/output_view.dart';
 
 class GameManager {
-  GameManager(
-      {required InputView inputView,
-      required OutputView outputView,
-      required GameService gameService})
-      : _inputView = inputView,
+  GameManager({
+    required InputView inputView,
+    required OutputView outputView,
+    required GameService gameService,
+  })  : _inputView = inputView,
         _outputView = outputView,
         _gameService = gameService {
     _outputView.printWelcome();
