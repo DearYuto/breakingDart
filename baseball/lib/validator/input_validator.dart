@@ -40,7 +40,7 @@ class InputValidator {
   }
 
   static bool validReGameCommand(String input) {
-    return input == '1' || input == '2';
+    return input == GameRules.regameCommand || input == GameRules.exitCommand;
   }
 
   static bool isNumbers<T>(List<T> inputs) {

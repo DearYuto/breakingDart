@@ -1,4 +1,5 @@
 import 'package:baseball/constants/game_rules.dart';
+import 'package:baseball/constants/messages.dart';
 import 'package:baseball/model/game_state.dart';
 import 'package:baseball/utils/string_utils.dart';
 import 'package:baseball/validator/input_validator.dart';
@@ -31,7 +32,6 @@ class GameManager {
 
   void play() {
     bool isPlaying = true;
-
     while (isPlaying) {
       try {
         List<int> userNumbers = _getUserInput();
@@ -48,17 +48,19 @@ class GameManager {
   bool isGameOver(List<int> userNumbers) {
     GameResult result = _gameService.calcGameResult(userNumbers);
 
-    if (result.strike == 3) {
+    if (result.strike == GameRules.gameOverCount) {
       _outputView.printGameOver();
 
       bool stop = false;
       while (!stop) {
         try {
-          String reGameCommand = _inputView.readRegame();
+          String reGameCommand = _inputView.readInput();
           stop = InputValidator.validReGameCommand(reGameCommand);
 
-          if (reGameCommand == '1') _resetGame();
-          if (reGameCommand == '2') _outputView.printMessage('게임 종료!');
+          if (reGameCommand == GameRules.regameCommand) _resetGame();
+
+          if (reGameCommand == GameRules.exitCommand)
+            _outputView.printMessage(MessageConstants.done);
         } catch (e) {
           throw e;
         }
@@ -67,8 +69,7 @@ class GameManager {
       return true;
     }
 
-    _outputView.printCalcResult(
-        ball: result.ball, strike: result.strike, nothing: result.nothing);
+    _outputView.printCalcResult(ball: result.ball, strike: result.strike);
 
     return false;
   }

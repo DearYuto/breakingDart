@@ -43,11 +43,10 @@ class GameService {
   GameResult calcGameResult(List<int> userInput) {
     int strike = calcStrike(userInput);
     int ball = calcBall(userInput);
-    bool nothing = ball == 0 && strike == 0;
 
     // todo remove
     print('결과 디버깅용 ${_gameState.correctAnswer}');
 
-    return GameResult(strike: strike, ball: ball, nothing: nothing);
+    return GameResult(strike: strike, ball: ball);
   }
 }

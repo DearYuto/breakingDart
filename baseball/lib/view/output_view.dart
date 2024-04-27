@@ -13,27 +13,30 @@ class OutputView {
     print(message);
   }
 
-  void printCalcResult(
-      {required int ball, required int strike, required bool nothing}) {
-    if (nothing) {
-      print('낫싱');
-      return;
-    }
-
-    if (ball <= 0) {
-      print('${strike}스트라이크');
-      return;
-    }
-
-    if (strike <= 0) {
-      print('${ball}볼');
-      return;
-    }
-
-    print('${ball}볼 ${strike}스트라이크');
+  void printCalcResult({required int ball, required int strike}) {
+    printMessage(_getResultTemplate(ball: ball, strike: strike));
   }
 
   void printGameOver() {
-    print('🎉🎉 3스트라이크! 🎉🎉');
+    printMessage(MessageConstants.gameover);
+  }
+
+  String _getResultTemplate({
+    required int ball,
+    required int strike,
+  }) {
+    if (ball == 0 && strike == 0) {
+      return '${MessageConstants.nothing}';
+    }
+
+    if (ball <= 0) {
+      return '${strike}${MessageConstants.strike}';
+    }
+
+    if (strike <= 0) {
+      return '${ball}${MessageConstants.ball}';
+    }
+
+    return '${ball}${MessageConstants.ball} ${strike}${MessageConstants.strike}';
   }
 }
