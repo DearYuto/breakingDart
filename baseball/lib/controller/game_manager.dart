@@ -23,6 +23,7 @@ class GameManager {
   final InputView _inputView;
   final OutputView _outputView;
   GameService _gameService;
+  bool _isPlaying = true;
 
   void initGame() {
     _outputView.printInputNumbers();
@@ -30,14 +31,12 @@ class GameManager {
   }
 
   void play() {
-    bool isPlaying = true;
-    while (isPlaying) {
+    while (_isPlaying) {
       try {
         final List<int> userNumbers = _getUserInput();
         _validateInput(userNumbers);
 
-        final bool isStop = isGameOver(userNumbers);
-        isPlaying = !isStop;
+        _isPlaying = !isGameOver(userNumbers);
       } catch (e) {
         _outputView.printMessage(e.toString());
       }
@@ -50,21 +49,7 @@ class GameManager {
     if (result.strike == GameRules.gameOverCount) {
       _outputView.printGameOver();
 
-      bool stop = false;
-      while (!stop) {
-        try {
-          final String reGameCommand = _inputView.readInput();
-          stop = InputValidator.validReGameCommand(reGameCommand);
-
-          if (reGameCommand == GameRules.regameCommand) _resetGame();
-
-          if (reGameCommand == GameRules.exitCommand) {
-            _outputView.printMessage(MessageConstants.done);
-          }
-        } catch (e) {
-          rethrow;
-        }
-      }
+      _getGameOverCommand();
 
       return true;
     }
@@ -72,6 +57,30 @@ class GameManager {
     _outputView.printCalcResult(result);
 
     return false;
+  }
+
+  void _getGameOverCommand() {
+    bool isExit = false;
+    while (!isExit) {
+      try {
+        final String reGameCommand =
+            _inputView.readMessageInput(MessageConstants.regame);
+        retryGame(reGameCommand);
+        isExit = InputValidator.validReGameCommand(reGameCommand);
+      } catch (e) {
+        rethrow;
+      }
+    }
+  }
+
+  void retryGame(String reGameCommand) {
+    if (reGameCommand == GameRules.regameCommand) {
+      _resetGame();
+    }
+
+    if (reGameCommand == GameRules.exitCommand) {
+      _outputView.printMessage(MessageConstants.done);
+    }
   }
 
   void _resetGame() {
