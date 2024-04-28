@@ -43,9 +43,6 @@ class GameService {
     final int strike = calcStrike(userInput);
     final int ball = calcBall(userInput);
 
-    // todo remove
-    print('결과 디버깅용 ${_gameState.correctAnswer}');
-
     return GameResult(strike: strike, ball: ball);
   }
 }

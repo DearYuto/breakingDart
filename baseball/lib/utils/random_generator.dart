@@ -7,10 +7,11 @@ class RandomGenerator {
     return min + random.nextInt(max - min + 1);
   }
 
-  String generateUniqueRandomNumbers(
-      {int count = GameRules.matchCount,
-      int min = GameRules.minNum,
-      int max = GameRules.maxNum}) {
+  String generateUniqueRandomNumbers({
+    int count = GameRules.matchCount,
+    int min = GameRules.minNum,
+    int max = GameRules.maxNum,
+  }) {
     final Set<int> uniqueNumbers = {};
 
     while (uniqueNumbers.length < count) {
