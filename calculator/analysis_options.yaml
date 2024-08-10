@@ -1,0 +1,23 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+
+  errors:
+    missing_return: error
+    unused_local_variable: warning
+
+linter:
+  rules:
+    # - avoid_print
+    - camel_case_types
+    - constant_identifier_names
+    - prefer_const_constructors
+    - prefer_final_locals
+    - annotate_overrides
+    - avoid_empty_else
+    - await_only_futures
+    - lines_longer_than_80_chars
+    - always_use_package_imports
