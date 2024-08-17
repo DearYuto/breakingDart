@@ -1,7 +1,7 @@
 class ValidationResult {
   static const String _defaultValidMessage = "valid";
   final bool isValid;
-  final String? errorMessage;
+  final String errorMessage;
 
   ValidationResult(this.isValid, [this.errorMessage = _defaultValidMessage]);
 }

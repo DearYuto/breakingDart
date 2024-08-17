@@ -1,4 +1,8 @@
 class OutputView {
+  static void printMessage(String message) {
+    print(message);
+  }
+
   static void printStart() {
     print('계산기 프로그램을 실행합니다.');
   }

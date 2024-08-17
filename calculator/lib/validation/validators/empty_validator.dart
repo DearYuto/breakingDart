@@ -1,4 +1,4 @@
-import 'package:calculator/validation/validators/abstract_validator.dart';
+import 'package:calculator/validation/abstract_validator.dart';
 
 class EmptyValidator extends AbstractValidator<String> {
   @override

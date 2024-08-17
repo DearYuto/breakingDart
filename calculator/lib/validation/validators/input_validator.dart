@@ -1,4 +1,4 @@
-import 'package:calculator/validation/validators/abstract_validator.dart';
+import 'package:calculator/validation/abstract_validator.dart';
 
 class InputValidator<T> extends AbstractValidator<T> {
   List<AbstractValidator<T>> validators;
@@ -9,6 +9,7 @@ class InputValidator<T> extends AbstractValidator<T> {
   ValidationResult validate(T value) {
     for (var validator in validators) {
       final ValidationResult result = validator.validate(value);
+
       if (!result.isValid) {
         return result;
       }
