@@ -8,6 +8,14 @@ class OutputView {
   }
 
   static void printFirstNumberInput() {
-    print('연산할 첫 번째 숫자를 입력해주세요.');
+    print('첫 번째 피연산자를 입력해주세요.');
+  }
+
+  static void printSecondeNumberInput() {
+    print('두 번째 피연산자를 입력해주세요.');
+  }
+
+  static void printOperator() {
+    print('수행할 연산을 입력해주세요. (  +, -, *, / )');
   }
 }
